@@ -17,7 +17,10 @@ Suggests:
     testthat,
     palmerpenguins,
     knitr,
-    rmarkdown
+    rmarkdown,
+    DT,
+    dplyr,
+    ggplot2
 VignetteBuilder: knitr
 Depends: 
     R (>= 2.10)
