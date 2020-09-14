@@ -13,3 +13,8 @@ grab_resids(lm_obj)
 This is a simple function to grab the residuals of a
 linear model.
 }
+\examples{
+library(palmerpenguins)
+fit <- lm(bill_length_mm ~ ., data = penguins[, -8])
+grab_resids(fit)
+}
