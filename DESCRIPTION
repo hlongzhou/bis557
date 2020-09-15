@@ -20,7 +20,8 @@ Suggests:
     rmarkdown,
     DT,
     dplyr,
-    ggplot2
+    ggplot2,
+    covr
 VignetteBuilder: knitr
 Depends: 
     R (>= 2.10)
