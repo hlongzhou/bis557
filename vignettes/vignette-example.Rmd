@@ -10,7 +10,8 @@ vignette: >
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
+  comment = "#>",
+  dev = "svg"
 )
 
 ```
@@ -76,7 +77,7 @@ summary(fit)
 ```
 
 Plot the residuals
-```{r, eval=FALSE}
+```{r}
 # base
 qs <- qqnorm(fit$residuals, plot.it = FALSE)
 qsd <- as.data.frame(qs)
@@ -87,7 +88,7 @@ ggplot(qsd, aes(x = x, y = y)) +
   theme_minimal()
 ```
 
-```{r, eval=FALSE}
+```{r}
 # tidy
 qqnorm(fit$residuals, plot.it = FALSE) %>%
   as_tibble() %>%
