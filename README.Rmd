@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
 # bis557
 
 <!-- badges: start -->
-[![Travis build status](https://travis-ci.org/tqchen07/bis557.svg?branch=master)](https://travis-ci.com/tqchen07/bis557)
+[![Travis build status](https://travis-ci.org/tqchen07/bis557.svg?branch=master)](https://travis-ci.org/tqchen07/bis557)
 [![Coverage Status](https://coveralls.io/repos/github/tqchen07/bis557/badge.svg?branch=master)](https://coveralls.io/github/tqchen07/bis557?branch=master)
 <!-- badges: end -->
 
