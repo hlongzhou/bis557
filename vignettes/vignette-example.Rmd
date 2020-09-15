@@ -12,6 +12,7 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
+
 ```
 
 ```{r }
@@ -75,8 +76,7 @@ summary(fit)
 ```
 
 Plot the residuals
-```{r}
-library(ggplot2)
+```{r, eval=FALSE}
 # base
 qs <- qqnorm(fit$residuals, plot.it = FALSE)
 qsd <- as.data.frame(qs)
@@ -87,7 +87,7 @@ ggplot(qsd, aes(x = x, y = y)) +
   theme_minimal()
 ```
 
-```{r}
+```{r, eval=FALSE}
 # tidy
 qqnorm(fit$residuals, plot.it = FALSE) %>%
   as_tibble() %>%
