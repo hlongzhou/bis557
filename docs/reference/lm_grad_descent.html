@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • bis557</title>
+<title>Preform Linear Model with Gradient Descent Method — lm_grad_descent • bis557</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,8 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="Preform Linear Model with Gradient Descent Method — lm_grad_descent" />
+<meta property="og:description" content="This is a simple algorithm to solve a linear regression model." />
 
 
 
@@ -58,7 +59,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -112,72 +113,76 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>Preform Linear Model with Gradient Descent Method</h1>
+    
+    <div class="hidden name"><code>lm_grad_descent.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    <p>This is a simple algorithm to solve a linear regression model.</p>
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
+    <pre class="usage"><span class='fu'>lm_grad_descent</span>(
+  <span class='kw'>form</span>,
+  <span class='kw'>data</span>,
+  contrasts = <span class='kw'>NULL</span>,
+  lambda = <span class='fl'>1e-04</span>,
+  tolerence = <span class='fl'>1e-15</span>,
+  beta_ini = <span class='fl'>1</span>,
+  max_itr = <span class='fl'>1e+06</span>
+)</pre>
 
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="grab_coeffs.html">grab_coeffs()</a></code> </p>
-        </td>
-        <td><p>Grab the slope coefficients</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="grab_resids.html">grab_resids()</a></code> </p>
-        </td>
-        <td><p>Grab the residuals</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="linear_model.html">linear_model()</a></code> </p>
-        </td>
-        <td><p>Preform Linear Model in Linear Algebra Way</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="lm_grad_descent.html">lm_grad_descent()</a></code> </p>
-        </td>
-        <td><p>Preform Linear Model with Gradient Descent Method</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="lm_patho.html">lm_patho</a></code> </p>
-        </td>
-        <td><p>Data for BIS557 HW01</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="penguinsi.html">penguinsi</a></code> </p>
-        </td>
-        <td><p>Data from the IMAP study</p></td>
-      </tr>
-    </tbody>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>form</th>
+      <td><p>a formula object, e.g. y ~ x1 + x2</p></td>
+    </tr>
+    <tr>
+      <th>data</th>
+      <td><p>a data frame</p></td>
+    </tr>
+    <tr>
+      <th>contrasts</th>
+      <td><p>a list, whose entries are values (numeric matrices, functions
+or character strings naming functions) to be used as replacement values for
+the contrasts replacement function and whose names are the names of columns
+of data containing factors. If <code>NULL</code>, then contrasts are ommitted.</p></td>
+    </tr>
+    <tr>
+      <th>lambda</th>
+      <td><p>a numeric number indicating the learning rate for gradient descent algorithm</p></td>
+    </tr>
+    <tr>
+      <th>tolerence</th>
+      <td><p>a numeric number indicating the precision of the algorithm</p></td>
+    </tr>
+    <tr>
+      <th>beta_ini</th>
+      <td><p>a numeric number indicating the initial value for beta coeffficient</p></td>
+    </tr>
+    <tr>
+      <th>max_itr</th>
+      <td><p>an integer indicating the maximum number iterations</p></td>
+    </tr>
     </table>
-  </div>
 
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='kw'>iris</span>)
+<span class='kw'>fit</span> <span class='op'>&lt;-</span> <span class='fu'>lm_grad_descent</span>(<span class='kw'>Sepal.Length</span> <span class='op'>~</span> <span class='kw'>.</span>, data = <span class='kw'>iris</span>)
+<span class='kw'>fit</span><span class='op'>$</span><span class='kw'>coefficients</span>
+</div><div class='output co'>#&gt;                         [,1]
+#&gt; (Intercept)        2.1712609
+#&gt; Sepal.Width        0.4958911
+#&gt; Petal.Length       0.8292429
+#&gt; Petal.Width       -0.3151580
+#&gt; Speciesversicolor -0.7235544
+#&gt; Speciesvirginica  -1.0234874</div></pre>
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>
