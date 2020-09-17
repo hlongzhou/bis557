@@ -2,3 +2,5 @@
 
 export(grab_coeffs)
 export(grab_resids)
+export(linear_model)
+export(lm_grad_descent)
