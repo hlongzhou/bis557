@@ -17,3 +17,19 @@ The development version of the package can be installed from [GitHub](https://gi
 # install.packages("devtools")
 devtools::install_github("tqchen07/bis557")
 ```
+
+Example
+-------
+
+``` r
+data(iris)
+
+# linear algebra method
+fit_lm <- linear_model(Sepal.Length ~ ., iris)
+fit_lm$coefficients
+
+# gradient descent algorithm
+fit_gd <- lm_grad_descent(Sepal.Length ~ ., iris)
+fit_gd$coefficients
+
+```
