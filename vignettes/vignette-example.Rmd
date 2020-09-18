@@ -10,91 +10,53 @@ vignette: >
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>",
-  dev = "png"
+  comment = "#>"
 )
 
 ```
 
 ```{r }
 library(bis557)
-library(palmerpenguins)
-library(DT)
+data(iris)
+data(lm_patho)
 
-data(penguins)
-
-datatable(penguins)
 ```
 
-<br><br>
+## Perform linear regression with lm() function
+```{r}
+fit_lm <- lm(Sepal.Length  ~ ., iris)
+fit_lm$coefficients
+```
 
-Above is the `penguins` data set form the {palmerpenguins} package.
-
-## Selecting variables and creating a table
+## Perform linear regression with linear_model() function
 
 ```{r}
-library(dplyr)
-library(ggplot2)
-
-# The "base" way.
-table(penguins$species, penguins$island)
-
-# The "tidy" way.
-penguins %>%
-  select(species, island) %>%
-  table()
-
+fit_linear_model <- linear_model(Sepal.Length ~ ., iris)
+fit_linear_model$coefficients
 ```
 
-
-## Filtering rows
-
-### base
+## Perform linear regression with lm_grad_descent() function
 ```{r}
-table(penguins[penguins$species == "Adelie", "sex"])
+fit_gd <- lm_grad_descent(Sepal.Length ~ ., iris)
+fit_gd$coefficients
 ```
 
-### tidy
+## Perform linear regression with lm() function with colinearity problem
 ```{r}
-penguins %>%
-  filter(species == "Adelie") %>%
-  select(sex) %>%
-  table()
+fit_lm <- lm(y  ~ ., lm_patho)
+fit_lm$coefficients
 ```
-# Building a model
 
-Let's fit the model:
-
-$$
-\text{bill_length_mm} \sim \text{species} \, \beta_1 + \text{island} \, \beta_2 + \text{sex} \, \beta_3 + \beta_0
-$$
-
-To fit the model we'll run the following code:
+## Perform linear regression with linear_model() function with colinearity problem
 
 ```{r}
-fit <- lm(bill_length_mm ~ species + island + sex, data = penguins)
-summary(fit)
+fit_linear_model <- linear_model(y  ~ ., lm_patho)
+fit_linear_model$coefficients
 ```
 
-Plot the residuals
+## Perform linear regression with lm_grad_descent() function with colinearity problem
 ```{r}
-# base
-qs <- qqnorm(fit$residuals, plot.it = FALSE)
-qsd <- as.data.frame(qs)
-ggplot(qsd, aes(x = x, y = y)) + 
-  geom_point() +
-  ylab("Sample Quantiles") +
-  xlab("Theoretical Quantiles") +
-  theme_minimal()
+fit_gd <- lm_grad_descent(y  ~ ., lm_patho)
+fit_gd$coefficients
 ```
 
-```{r}
-# tidy
-qqnorm(fit$residuals, plot.it = FALSE) %>%
-  as_tibble() %>%
-  ggplot(aes(x = x, y = y)) + 
-    geom_point() +
-    ylab("Sample Quantiles") +
-    xlab("Theoretical Quantiles") +
-    theme_minimal()
-```
