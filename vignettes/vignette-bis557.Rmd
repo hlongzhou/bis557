@@ -1,8 +1,8 @@
 ---
-title: "An Example of Vignette"
+title: "vignette-bis557"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{An Example of Vignette}
+  %\VignetteIndexEntry{vignette-bis557}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -12,15 +12,32 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
-
 ```
 
-```{r }
+```{r setup}
 library(bis557)
-data(iris)
-data(lm_patho)
-
 ```
+
+## Package summary
+
+This package includes one dataset `lm_patho`, and two functions `linear_model()` and `lm_grad_descent()`. The purpose of these two functions are solving linear regression problem with different methods.
+
+## data lm_patho
+`lm_patho` is a dataset with one dependent variabl, and two correlated independent variables.
+```{r}
+data("lm_patho")
+lm_patho
+```
+
+## linear_model() function
+
+The estimated coefficients are calculated in linear algebra way:
+
+$\hat{\beta} = (X^TX)^{-1}X^TY$
+
+
+## lm_grad_descent() function
+The estimated coefficients are obtained by iterating optimization algorithm, and the precision can be regulated by the algorithm finishing criteria. 
 
 ## Perform linear regression with lm() function
 ```{r}
@@ -31,12 +48,13 @@ fit_lm$coefficients
 ## Perform linear regression with linear_model() function
 
 ```{r}
-fit_linear_model <- linear_model(Sepal.Length ~ ., iris)
+fit_linear_model <- bis557:::linear_model(Sepal.Length ~ ., iris)
 fit_linear_model$coefficients
 ```
 
 ## Perform linear regression with lm_grad_descent() function
 ```{r}
+library(bis557)
 fit_gd <- lm_grad_descent(Sepal.Length ~ ., iris)
 fit_gd$coefficients
 ```
@@ -50,13 +68,16 @@ fit_lm$coefficients
 ## Perform linear regression with linear_model() function with colinearity problem
 
 ```{r}
+library(bis557)
 fit_linear_model <- linear_model(y  ~ ., lm_patho)
 fit_linear_model$coefficients
 ```
 
 ## Perform linear regression with lm_grad_descent() function with colinearity problem
 ```{r}
+library(bis557)
 fit_gd <- lm_grad_descent(y  ~ ., lm_patho)
 fit_gd$coefficients
 ```
+
 

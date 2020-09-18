@@ -11,7 +11,6 @@
 #' fit <- linear_model(y ~ ., data = lm_patho)
 #' fit$coefficients
 #' @export
-
 linear_model <- function(form, data, contrasts = NULL){
 
   data_no_na <- model.frame(form, data)
